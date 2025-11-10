@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Atria Resin – Landing Page</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      display: grid;
+      grid-template-rows: auto auto auto;
+    }
+
+    .section {
+      padding: 40px 20px;
+      color: white;
+    }
+
+    .top {
+		background: url('background-image.jpg') no-repeat center center;
+		background-size: cover;
+		display: grid;
+		grid-template-columns: 1fr 2fr;
+		align-items: center;
+		color: white;
+	}
+
+
+    .top img {
+      max-width: 150px;
+      margin-left: 20px;
+    }
+
+    .hero-text {
+      font-size: 2em;
+      color: #b8860b; /* gold */
+      text-align: center;
+    }
+
+    .middle {
+      background: #8b0000; /* deep resin red */
+	  
+      text-align: center;
+    }
+
+    .middle h2 {
+      font-size: 1.8em;
+      margin-bottom: 10px;
+    }
+
+    .middle p {
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
+
+    .bottom {
+      background: url('background-image.jpg') no-repeat center center;
+		background-size: cover;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+        color: #333;
+		height: 100vh; /* or use a fixed px value like 800px */
+		overflow-y: auto; /* enables scrolling if content overflows */
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+      transition: transform 0.3s ease;
+      display: block;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .price-tag {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      text-align: center;
+      padding: 5px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🔶 Top Section -->
+  <div class="section top">
+    <img src="atria-logo.png" alt="Atria Resin Logo" />
+    <div class="hero-text">Epoxy Resin Art That Transforms Space</div>
+  </div>
+
+  <!-- 🪪 Middle Section -->
+  <div class="section middle">
+	
+    <h1>Jinoura Mehri </h1>
+    <p>Email: <a href="mailto:atriaresin@gmail.com" style="color: #ffd700;">atriaresin@gmail.com</a></p>
+    <p>WhatsApp: <a href="https://wa.me/989212819613" style="color: #ffd700;">09212819613</a></p>
+    <p>Instagram: <a href="https://t.me/atria_resin" style="color: #ffd700;">@atria_resin</a></p>
+    <p>Epoxy resin art blends cosmic swirls with handcrafted elegance. Each piece is a fusion of color, texture, and emotion — designed to inspire and elevate your space.</p>
+	<p>
+       For custom orders, collaborations, or any inquiries, feel free to reach out through email, WhatsApp, or Instagram. We look forward to connecting and bringing your resin vision to life.
+	</p>
+  </div>
+
+  <!-- 🖼 Bottom Section -->
+  <div class="section bottom">
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="sample-image.jpg" alt="Resin Art 1" />        
+		<div class="price-tag">1,200,000 Toman</div>
+      </div>
+	  <div class="gallery-item">
+        <img src="sample1-image.jpg" alt="Resin Art 2" />        
+		<div class="price-tag">2,200,000 Toman</div>
+      </div>
+	  <div class="gallery-item">
+        <img src="sample2-image.jpg" alt="Resin Art 3" />        
+		<div class="price-tag">1,700,000 Toman</div>
+      </div>
+	  <div class="gallery-item">
+        <img src="sample3-image.jpg" alt="Resin Art 4" />        
+		<div class="price-tag">560,000 Toman</div>
+      </div>
+	  <div class="gallery-item">
+        <img src="sample4-image.jpg" alt="Resin Art 5" />        
+		<div class="price-tag">900,000 Toman</div>
+      </div>
+	  <div class="gallery-item">
+        <img src="sample5-image.jpg" alt="Resin Art 6" />        
+		<div class="price-tag">4,200,000 Toman</div>
+      </div>
+	  <div class="gallery-item">
+        <img src="sample6-image.jpg" alt="Resin Art 7" />        
+		<div class="price-tag">1,580,000 Toman</div>
+      </div>
+	  <div class="gallery-item">
+        <img src="sample7-image.jpg" alt="Resin Art 8" />        
+		<div class="price-tag">2,000,000 Toman</div>
+      </div>
+	  <div class="gallery-item">
+        <img src="sample-image.jpg" alt="Resin Art 1" />        
+		<div class="price-tag">1,200,000 Toman</div>
+      </div>
+	  <div class="gallery-item">
+        <img src="sample1-image.jpg" alt="Resin Art 2" />        
+		<div class="price-tag">2,200,000 Toman</div>
+      </div>
+	  <div class="gallery-item">
+        <img src="sample2-image.jpg" alt="Resin Art 3" />        
+		<div class="price-tag">1,700,000 Toman</div>
+      </div>
+	  <div class="gallery-item">
+        <img src="sample3-image.jpg" alt="Resin Art 4" />        
+		<div class="price-tag">560,000 Toman</div>
+      </div>
+	  <div class="gallery-item">
+        <img src="sample4-image.jpg" alt="Resin Art 5" />        
+		<div class="price-tag">900,000 Toman</div>
+      </div>
+	  <div class="gallery-item">
+        <img src="sample5-image.jpg" alt="Resin Art 6" />        
+		<div class="price-tag">4,200,000 Toman</div>
+      </div>
+	  <div class="gallery-item">
+        <img src="sample6-image.jpg" alt="Resin Art 7" />        
+		<div class="price-tag">1,580,000 Toman</div>
+      </div>
+	  <div class="gallery-item">
+        <img src="sample7-image.jpg" alt="Resin Art 8" />        
+		<div class="price-tag">2,000,000 Toman</div>
+      </div>
+      <!-- Repeat for resin2.jpg to resin8.jpg -->
+    </div>
+  </div>
+
+</body>
+</html>
