@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atria Resin | Curated Collection</title>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+    <style>
+        :root { --primary: #681e28; --gold: #c5a059; --dark: #1a1a1a; --light: #f9f9f9; --white: #ffffff; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Helvetica, sans-serif; }
+
+        body.rtl { direction: rtl; font-family: 'Vazirmatn', sans-serif !important; }
+        body.rtl * { font-family: 'Vazirmatn', sans-serif !important; }
+        body { background-color: var(--light); color: var(--dark); padding-bottom: 80px; transition: all 0.3s ease; }
+
+        .lang-dropdown { position: fixed; top: 20px; right: 20px; z-index: 9999; direction: ltr !important; animation: pulse-gold 2s infinite; }
+        .lang-dropdown:hover, .lang-dropdown.active { animation: none; }
+        .drop-btn { background: rgba(20, 20, 20, 0.95); color: white; padding: 10px 20px; font-size: 1rem; border: 2px solid var(--gold); cursor: pointer; border-radius: 25px; display: flex; align-items: center; gap: 8px; font-weight: bold; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .drop-btn:hover { background: var(--primary); transform: scale(1.05); }
+        .dropdown-content { display: none; position: absolute; right: 0; background-color: #fff; min-width: 170px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3); border-radius: 10px; overflow: hidden; margin-top: 5px; text-align: left; z-index: 10000; }
+        .dropdown-content.show { display: block; animation: fadeIn 0.2s ease-in-out; }
+        .dropdown-content div { color: #333; padding: 12px 16px; cursor: pointer; font-size: 0.95rem; border-bottom: 1px solid #eee; transition: 0.2s; }
+        .dropdown-content div:hover { background-color: var(--gold); color: white; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse-gold { 0% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(197, 160, 89, 0); } 100% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0); } }
+
+        header { background: linear-gradient(135deg, #2c050b, var(--primary)); color: white; padding: 50px 20px 100px; text-align: center; border-radius: 0 0 50% 50% / 20px; position: relative; }
+        .logo-box { width: 100px; height: 100px; margin: 0 auto 15px; background: var(--dark); border: 3px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 25px rgba(197, 160, 89, 0.6); }
+        .logo-text { font-family: 'Georgia', serif; font-size: 2.5rem; font-weight: bold; color: var(--gold); }
+        header h1 { font-size: 1.8rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 5px; }
+        header p { font-size: 0.9rem; opacity: 0.8; font-style: italic; }
+
+        .profile-section { background: var(--white); width: 90%; max-width: 500px; margin: -70px auto 40px; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; position: relative; z-index: 10; border-top: 5px solid var(--gold); }
+        .bio-text { color: #555; margin-bottom: 20px; line-height: 1.8; }
+        body.rtl .bio-text { text-align: justify; }
+        .social-links { display: flex; justify-content: center; gap: 10px; }
+        .btn { text-decoration: none; padding: 10px 20px; border-radius: 30px; font-size: 0.9rem; font-weight: bold; transition: 0.3s; border: none; cursor: pointer; }
+        .btn-insta { background: #E1306C; color: white; }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn:hover { transform: translateY(-2px); opacity: 0.9; }
+
+        .section-title { text-align: center; color: var(--primary); margin: 30px 0; font-size: 1.6rem; text-transform: uppercase; letter-spacing: 1px; }
+        .gallery-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 0 20px; max-width: 1200px; margin: 0 auto; }
+        .gallery-card { background: white; width: 280px; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: transform 0.3s; display: flex; flex-direction: column; }
+        .gallery-card:hover { transform: translateY(-5px); }
+        .gallery-img { width: 100%; height: 280px; object-fit: cover; border-bottom: 2px solid var(--gold); background-color: #eee; }
+        .gallery-info { padding: 15px; text-align: center; }
+        .art-title { color: var(--primary); font-weight: bold; font-size: 1.1rem; margin-bottom: 5px; }
+        .art-price { color: #444; font-weight: bold; font-size: 0.95rem; }
+        .art-date { color: #999; font-size: 0.8rem; margin-top: 5px;}
+
+        .order-form-container { background: white; max-width: 600px; margin: 50px auto 20px; padding: 30px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; color: #444; font-weight: 600; }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 1rem; }
+        .btn-submit { width: 100%; background: var(--gold); color: var(--dark); }
+    </style>
+</head>
+<body class="ltr">
+
+    <!-- LANGUAGE DROPDOWN -->
+    <div class="lang-dropdown">
+        <button class="drop-btn" id="current-lang-display" onclick="toggleLangMenu()">🌐 🇺🇸 English ▼</button>
+        <div id="myDropdown" class="dropdown-content">
+            <div onclick="setLanguage('en')">🇺🇸 English</div>
+            <div onclick="setLanguage('fa')">🇮🇷 فارسی</div>
+            <div onclick="setLanguage('ru')">🇷🇺 Русский</div>
+            <div onclick="setLanguage('zh')">🇨🇳 中文</div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo-box"><span class="logo-text">AR</span></div>
+        <h1 id="txt-brand">Atria Resin</h1>
+        <p id="txt-tagline">Timeless Beauty, Captured in Resin</p>
+    </header>
+
+    <!-- Profile -->
+    <div class="profile-section">
+        <h2 style="color: var(--primary); margin-bottom: 10px;" id="txt-artist">Jinoura Mehri</h2>
+        <p class="bio-text" id="txt-bio">
+            I specialize in preserving moments and emotions through fluid art. Each piece at Atria Resin is meticulously handcrafted to bring a touch of glass-like elegance and natural beauty into your living space.
+        </p>
+        <div class="social-links">
+            <a href="https://instagram.com/atria_resin" target="_blank" class="btn btn-insta" id="btn-insta">View Portfolio</a>
+            <a href="#custom-order" class="btn btn-primary" id="btn-custom">Start Custom Order</a>
+        </div>
+    </div>
+
+    <!-- Gallery -->
+    <h2 class="section-title" id="txt-gallery-title">Curated Collection</h2>
+    <div class="gallery-container" id="gallery-display">
+        <!-- Artwork 1 -->
+        <div class="gallery-card" data-art-index="0">
+            <img src="Copilot_20251123_021629.png" alt="" class="gallery-img">
+            <div class="gallery-info">
+                <div class="art-title"></div>
+                <div class="art-price" data-price-toman="1200000"></div>
+                <div class="art-date" data-date="2025-01-15"></div>
+            </div>
+        </div>
+        <!-- Artwork 2 -->
+        <div class="gallery-card" data-art-index="1">
+            <img src="Copilot_20251125_092040.png" alt="" class="gallery-img">
+            <div class="gallery-info">
+                <div class="art-title"></div>
+                <div class="art-price" data-price-toman="950000"></div>
+                <div class="art-date" data-date="2025-02-01"></div>
+            </div>
+        </div>
+        <!-- Artwork 3 -->
+        <div class="gallery-card" data-art-index="2">
+            <img src="j526ozGtCk.png" alt="" class="gallery-img">
+            <div class="gallery-info">
+                <div class="art-title"></div>
+                <div class="art-price" data-price-toman="720000"></div>
+                <div class="art-date" data-date="2025-02-20"></div>
+            </div>
+        </div>
+        <!-- Artwork 4 -->
+        <div class="gallery-card" data-art-index="3">
+            <img src="generated-image-9183c940-8f91-41fe-9c35-0a0ec930c882.png" alt="" class="gallery-img">
+            <div class="gallery-info">
+                <div class="art-title"></div>
+                <div class="art-price" data-price-toman="165000"></div>
+                <div class="art-date" data-date="2025-03-10"></div>
+            </div>
+        </div>
+        <!-- Artwork 5 -->
+        <div class="gallery-card" data-art-index="4">
+            <img src="generated-image-65ea6a46-cc6d-428f-9e40-0fe15750d7b9.png" alt="" class="gallery-img">
+            <div class="gallery-info">
+                <div class="art-title"></div>
+                <div class="art-price" data-price-toman="380000"></div>
+                <div class="art-date" data-date="2025-03-25"></div>
+            </div>
+        </div>
+        <!-- Artwork 6 -->
+        <div class="gallery-card" data-art-index="5">
+            <img src="20230419_163153.jpg" alt="" class="gallery-img">
+            <div class="gallery-info">
+                <div class="art-title"></div>
+                <div class="art-price" data-price-toman="245000"></div>
+                <div class="art-date" data-date="2025-04-05"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Form -->
+    <h2 class="section-title" id="custom-order">Commission a Unique Piece</h2>
+    <div class="order-form-container">
+        <form action="mailto:atriaresin@gmail.com" method="post" enctype="text/plain">
+            <div class="form-group"><label id="lbl-name">Your Name</label><input type="text" name="Name" required placeholder="e.g. Alex" id="ph-name"></div>
+            <div class="form-group"><label id="lbl-contact">Contact (Email/Phone)</label><input type="text" name="Contact" required placeholder="How can I reach you?" id="ph-contact"></div>
+            <div class="form-group"><label id="lbl-details">Tell me about your vision...</label><textarea name="Message" rows="5" required placeholder="Describe the colors, size, or style you are looking for..." id="ph-msg"></textarea></div>
+            <button type="submit" class="btn btn-submit" id="btn-send">Send Commission Request</button>
+        </form>
+    </div>
+
+    <script>
+        // Fixed Toman-based rates
+        const RATES_FROM_TOMAN = {
+            en: { symbol: '$',  per: 118000,  suffix: '' },
+            zh: { symbol: '¥',  per: 17110,   suffix: '' },
+            ru: { symbol: '₽',  per: 1500,    suffix: '' },
+            fa: { symbol: '',   per: 1,       suffix: ' تومان' }
+        };
+
+        const translations = {
+            en: {
+                flag: '🇺🇸', label: 'English', dir: 'ltr', locale: 'en-US',
+                brand: "Atria Resin",
+                tagline: "Timeless Beauty, Captured in Resin",
+                artist: "Jinoura Mehri",
+                bio: "I specialize in preserving moments and emotions through fluid art. Each piece at Atria Resin is meticulously handcrafted to bring a touch of glass-like elegance and natural beauty into your living space.",
+                insta: "View Portfolio",
+                custom: "Start Custom Order",
+                galleryTitle: "Curated Collection",
+                reqTitle: "Commission a Unique Piece",
+                lblName: "Your Name",
+                lblContact: "Contact (Email/Phone)",
+                lblDetails: "Tell me about your vision...",
+                phName: "e.g. Alex",
+                phContact: "How can I reach you?",
+                phMsg: "Describe the colors, size, or style you are looking for...",
+                btnSend: "Send Commission Request",
+                artworks: [
+                    "Coaster Set",
+                    "Wave tray",
+                    "A5 notebook set",
+                    "Keychain and Pendant",
+                    "Necklace",
+                    "Keychain"
+                ]
+            },
+            fa: {
+                flag: '🇮🇷', label: 'فارسی', dir: 'rtl', locale: 'fa-IR',
+                brand: "آتریا رزین",
+                tagline: "زیبایی ماندگار، ثبت شده در رزین",
+                artist: "ژینورا مهری",
+                bio: "تخصص من ثبت لحظات و احساسات از طریق هنر سیال است. هر اثر در آتریا رزین با ظرافت و دقت دست‌ساز شده تا جلوه‌ای شیشه‌ای و زیبایی طبیعی را به فضای زندگی شما هدیه دهد.",
+                insta: "مشاهده نمونه‌کارها",
+                custom: "سفارش اختصاصی",
+                galleryTitle: "مجموعه آثار",
+                reqTitle: "سفارش طرح دلخواه",
+                lblName: "نام شما",
+                lblContact: "راه ارتباطی (موبایل/ایمیل)",
+                lblDetails: "درباره ایده خود بگویید...",
+                phName: "مثلا: علی",
+                phContact: "چطور با شما تماس بگیرم؟",
+                phMsg: "لطفا رنگ‌ها، ابعاد و سبکی که در نظر دارید را توصیف کنید...",
+                btnSend: "ارسال درخواست سفارش",
+                artworks: [
+                    "ست زیر لیوانی",
+                    "سینی موج",
+                    "ست دفتر A5",
+                    "اویز و جاکلیدی",
+                    "گردنبند",
+                    "جاکلیدی"
+                ]
+            },
+            ru: {
+                flag: '🇷🇺', label: 'Русский', dir: 'ltr', locale: 'ru-RU',
+                brand: "Atria Resin",
+                tagline: "Вечная красота, застывшая в смоле",
+                artist: "Джинура Мехри",
+                bio: "Я специализируюсь на сохранении эмоций через текучее искусство. Каждое изделие Atria Resin создано вручную, чтобы принести в ваш дом стеклянную элегантность и природную красоту.",
+                insta: "Портфолио",
+                custom: "Индивидуальный заказ",
+                galleryTitle: "Коллекция",
+                reqTitle: "Заказать уникальное изделие",
+                lblName: "Ваше имя",
+                lblContact: "Контакт (Email/Тел)",
+                lblDetails: "Расскажите о вашей идее...",
+                phName: "Например: Анна",
+                phContact: "Как с вами связаться?",
+                phMsg: "Опишите цвета, размер или стиль, который вы ищете...",
+                btnSend: "Отправить запрос",
+                artworks: [
+                    "Набор подставок",
+                    "Лоток для волны",
+                    "Набор тетрадей A5",
+                    "Брелок и кулон",
+                    "ожерелье",
+                    "брелок"
+                ]
+            },
+            zh: {
+                flag: '🇨🇳', label: '中文', dir: 'ltr', locale: 'zh-CN',
+                brand: "Atria Resin",
+                tagline: "永恒之美，凝固于树脂之中",
+                artist: "Jinoura Mehri",
+                bio: "我专注于通过流体艺术保存珍贵的瞬间。Atria Resin 的每一件作品都是精心手工制作，旨在为您的生活空间带来如玻璃般通透的优雅与自然之美。",
+                insta: "查看作品集",
+                custom: "定制订单",
+                galleryTitle: "精选系列",
+                reqTitle: "定制独一无二的作品",
+                lblName: "您的名字",
+                lblContact: "联系方式 (电话/邮箱)",
+                lblDetails: "告诉我也许您的想法...",
+                phName: "例如：李明",
+                phContact: "我该如何联系您？",
+                phMsg: "请描述您寻找的颜色、尺寸或风格...",
+                btnSend: "发送定制请求",
+                artworks: [
+                    "杯垫套装",
+                    "托盘波纹",
+                    "A5笔记本套装",
+                    "吊饰和钥匙扣",
+                    "项链",
+                    "钥匙扣"
+                ]
+            }
+        };
+
+        let currentLang = localStorage.getItem('atria_lang') || 'en';
+
+        function toggleLangMenu() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        window.onclick = function(e) {
+            if (!e.target.matches('.drop-btn')) {
+                const d = document.getElementsByClassName("dropdown-content");
+                for (let i = 0; i < d.length; i++) {
+                    if (d[i].classList.contains('show')) d[i].classList.remove('show');
+                }
+            }
+        };
+
+        function setLanguage(code) {
+            currentLang = code;
+            localStorage.setItem('atria_lang', code);
+            applyUI();
+            updateGalleryTextAndPrices();
+        }
+
+        function applyUI() {
+            const t = translations[currentLang];
+            document.body.className = t.dir;
+            document.getElementById('current-lang-display').innerHTML = `🌐 ${t.flag} ${t.label} ▼`;
+
+            document.getElementById('txt-brand').textContent = t.brand;
+            document.getElementById('txt-tagline').textContent = t.tagline;
+            document.getElementById('txt-artist').textContent = t.artist;
+            document.getElementById('txt-bio').textContent = t.bio;
+            document.getElementById('btn-insta').textContent = t.insta;
+            document.getElementById('btn-custom').textContent = t.custom;
+            document.getElementById('txt-gallery-title').textContent = t.galleryTitle;
+            document.getElementById('custom-order').textContent = t.reqTitle;
+            document.getElementById('lbl-name').textContent = t.lblName;
+            document.getElementById('lbl-contact').textContent = t.lblContact;
+            document.getElementById('lbl-details').textContent = t.lblDetails;
+            document.getElementById('ph-name').placeholder = t.phName;
+            document.getElementById('ph-contact').placeholder = t.phContact;
+            document.getElementById('ph-msg').placeholder = t.phMsg;
+            document.getElementById('btn-send').textContent = t.btnSend;
+        }
+
+        function updateGalleryTextAndPrices() {
+            const t = translations[currentLang];
+            const rate = RATES_FROM_TOMAN[currentLang];
+
+            const cards = document.querySelectorAll('.gallery-card');
+            cards.forEach((card, index) => {
+                const titleEl = card.querySelector('.art-title');
+                const priceEl = card.querySelector('.art-price');
+                const dateEl = card.querySelector('.art-date');
+                const imgEl  = card.querySelector('.gallery-img');
+
+                // Title + alt text
+                if (t.artworks && t.artworks[index]) {
+                    titleEl.textContent = t.artworks[index];
+                    imgEl.alt = t.artworks[index];
+                }
+
+                // Price
+                const tomanVal = parseFloat(priceEl.dataset.priceToman);
+                if (!isNaN(tomanVal) && rate) {
+                    let converted = tomanVal / rate.per;
+                    converted = Math.round(converted);
+                    priceEl.textContent = rate.symbol + converted.toLocaleString(t.locale) + rate.suffix;
+                }
+
+                // Date
+                const dateStr = dateEl.dataset.date;
+                if (dateStr) {
+                    try {
+                        const d = new Date(dateStr);
+                        dateEl.textContent = new Intl.DateTimeFormat(t.locale, {
+                            year: 'numeric',
+                            month: 'short'
+                        }).format(d);
+                    } catch (e) {
+                        dateEl.textContent = dateStr;
+                    }
+                }
+            });
+        }
+
+        // Initial
+        applyUI();
+        updateGalleryTextAndPrices();
+    </script>
+</body>
+</html>
